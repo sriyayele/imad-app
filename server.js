@@ -22,7 +22,8 @@ var articles = {
                 this is the content in my webapp. this is the content in my webapp. this is the content in my webapp. this is the content in my webapp. this is the content in my webapp. 
             </p>`}
 };
-Function createTemplate (data){
+ Function createTemplate (data) 
+ {
     var title =data.title;
     var date = data.date;
     var heading = data.heading;
@@ -58,7 +59,7 @@ var htmlTemplate = `<html>
 
 `;
 return htmlTemplate;
-};
+}
 
 
 
