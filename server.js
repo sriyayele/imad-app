@@ -77,19 +77,35 @@ app.get('/', function (req, res) {
 var pool = new Pool(config);
 app.get('/test-db', function (req,res)
 {
-    pool.query('select * from test', function (err, result)
+    pool.query('SELECT * FROM test', function (err, result)
     {
         if(err){
             res.status(500).send(err.toString());
             
         } else{
             res.send(JSON.stringify(result));
-        }
+            }
+         
     });
 });
-app.get('/:articleName', function(req, res) {
-var articleName = req.params.articleName;
-    res.send(createTemplate(articles[articleName]));
+app.get('/article/:articleName', function(req, res) {
+
+pool.query("SELECT * FROM article_one WHERE title = " + req.params.articleName, function (err, result)
+{  if(err){
+            res.status(500).send(err.toString());
+            
+        } else{
+            if (result.rows.length ===0){
+                res.status(404).send('aticle not found');
+                
+            }else{
+                       var articleData = result.rows[0];
+                       res.send(createTemplate(articleData));res.send(createTemplate(articleData));
+}
+        }
+    
+});
+    
 });
 
 
@@ -109,3 +125,8 @@ var port = 80;
 app.listen(80, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
+
+
+
+
+
