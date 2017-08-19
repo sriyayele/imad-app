@@ -75,7 +75,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 var pool = new Pool(config);
-app.getI('/test-db', function (req,res)
+app.get('/test-db', function (req,res)
 {
     pool.query('select * from test', function (err, result)
     {
